@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 /**
  * getline - my custom getline function
  * Return: 0
