@@ -11,7 +11,7 @@ int main(void)
 	ssize_t _read;
 
 	printf("$: ");
-	_read = getline(&buffer, &bufsize, stdin);
+	_read = my_getline(&buffer, &bufsize, stdin);
 	if (_read == -1)
 		printf("Error reading the line");
 	printf("%s", buffer);

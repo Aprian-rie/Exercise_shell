@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * my_getline - custom getline function
  * Return: no of chars read if success
@@ -10,30 +11,29 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 	int c;
 
 	*lineptr = (char *)malloc(bufsize);
-	if (!buffer)
+	if (!lineptr)
 		return (-1);
 	while ((c = fgetc(stream)) != EOF)
 	{
 		if (char_num >= bufsize - 1)
 		{
-			bufsize += 256;
-			*lineptr = (char *)realloc(bufsize);
+			break;
 
 			if (!lineptr)
 				return (-1);
 		}
-		(*lineptr)[pos++] = (char)c;
+		(*lineptr)[char_num++] = (char)c;
 
-		if (c == "\n")
+		if (c == '\n')
 		{
-			(*lineptr)[pos++] = '\0';
-			return (pos);
+			(*lineptr)[char_num++] = '\0';
+			return (char_num);
 		}
 
 	}
-	(*lineptr)[pos] = '\0';
-	if (pos)
-		return (pos);
+	(*lineptr)[char_num] = '\0';
+	if (char_num)
+		return (char_num);
 	else
 		return (-1);
 }
