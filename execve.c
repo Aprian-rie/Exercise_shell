@@ -8,7 +8,7 @@ extern char **environ;
 int main(void)
 {
 	char *pathname = "/bin/ls";
-	char *argv[] = {"ls", "-l"};
+	char *argv[] = {"ls", "-l", "/tmp", NULL};
 
 	printf("Start of execve command\n");
 	printf("--------------------------\n");
