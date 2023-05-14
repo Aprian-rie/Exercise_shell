@@ -20,6 +20,7 @@ int main(void)
 	if (child_pid == 0)
 	{
 		printf("Wait for me\n");
+		sleep(5);
 	}
 	else
 	{
