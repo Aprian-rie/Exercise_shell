@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <unistd.h>
+extern char **environ;
 /**
  * execve -  executes another program
  * Return: Another program
  */
 int main(void)
 {
-	char *pathname = "/usr/bin/ls";
+	char *pathname = "/bin/ls";
 	char *argv[] = {"ls", "-l"};
-	char *const envp[] = {NULL};
 
-	printf("Start of execve command");
-	printf("--------------------------");
-	if ((execve(pathname, argv, envp)) == -1)
+	printf("Start of execve command\n");
+	printf("--------------------------\n");
+	if ((execve(pathname, argv, environ)) == -1)
 	{
-		perror("could not execute execve command");
+		perror("could not execute execve command\n");
 	}
-	printf("Something went wrong");
+	printf("Something went wrong\n");
 	return (0);
 }
