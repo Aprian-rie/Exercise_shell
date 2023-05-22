@@ -29,8 +29,8 @@ int my_execvp(const char *file, char *const argv[]) {
             return -1;
         }
 	_strcpy(exec_path, dir);
-	strcat(exec_path, "/");
-	strcat(exec_path, file);
+	_strcat(exec_path, "/");
+	_strcat(exec_path, file);
         /*snprintf(exec_path, path_len, "%s/%s", dir, file);*/
 
         /* Execute the command using execve()*/

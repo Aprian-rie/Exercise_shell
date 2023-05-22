@@ -9,4 +9,5 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 int my_execvp(const char *file, char *const argv[]);
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 #endif

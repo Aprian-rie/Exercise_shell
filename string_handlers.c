@@ -37,3 +37,24 @@ char *_strcpy(char *dest, char *src)
 	}
 	return (dest);
 }
+/**
+ * _strcat - cncatenates 2 strings
+ * @dest: final value
+ * @src: One being appended to
+ * Return: Concatenated string
+ */
+char *_strcat(char *dest, const char *src)
+{
+	int i = 0, j = 0;
+
+	for (i = 0; *(dest + i) != '\0'; i++)
+	{
+	}
+	for (j = 0; *(src + j) != '\0'; j++)
+	{
+		*(dest + i) = *(src + j);
+		i++;
+	}
+	*(dest + i) = '\0';
+	return (dest);
+}
