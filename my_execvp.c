@@ -22,13 +22,13 @@ int my_execvp(const char *file, char *const argv[]) {
     /* Iterate over each directory in PATH */
     while (dir != NULL) {
         /* Create the full path to the executable file */
-        size_t path_len = strlen(dir) + strlen(file) + 2;
+        size_t path_len = _strlen(dir) + _strlen(file) + 2;
         char *exec_path = (char *)malloc(path_len);
         if (exec_path == NULL) {
             perror("Error: Memory allocation failed");
             return -1;
         }
-	strcpy(exec_path, dir);
+	_strcpy(exec_path, dir);
 	strcat(exec_path, "/");
 	strcat(exec_path, file);
         /*snprintf(exec_path, path_len, "%s/%s", dir, file);*/
