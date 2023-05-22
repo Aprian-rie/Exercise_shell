@@ -58,3 +58,21 @@ char *_strcat(char *dest, const char *src)
 	*(dest + i) = '\0';
 	return (dest);
 }
+/**
+ * _strcmp - compares two strings
+ * @s1: 1st parameter to be compared
+ * @s2: 2nd parameter to be compared
+ * Return: +ve or -ve
+ */
+int _strcmp(char *s1, const char *s2)
+{
+	unsigned char c1, c2;
+
+	do	{
+		c1 = (unsigned char) *s1++;
+		c2 = (unsigned char) *s2++;
+		if (c1 == '\0')
+			return (c1 - c2);
+	} while (c1 == c2);
+	return (c1 - c2);
+}

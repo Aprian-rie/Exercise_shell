@@ -9,7 +9,7 @@ int my_execvp(const char *file, char *const argv[]) {
     char *path, *dir;
     const char *delim;
 
-    path  = getenv("PATH");
+    path  = my_getenv("PATH");
     if (path == NULL) {
         perror( "Error: PATH environment variable not found\n");
         return (-1);

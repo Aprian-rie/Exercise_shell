@@ -10,4 +10,7 @@ int my_execvp(const char *file, char *const argv[]);
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, const char *src);
+int _strcmp(char *s1, const char *s2);
+char *my_getenv(const char *name);
 #endif
+
