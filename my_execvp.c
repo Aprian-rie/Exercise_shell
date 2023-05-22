@@ -8,6 +8,7 @@ int my_execvp(const char *file, char *const argv[]) {
     /* Get the value of the PATH environment variable */
     char *path, *dir;
     const char *delim;
+
     path  = getenv("PATH");
     if (path == NULL) {
         perror( "Error: PATH environment variable not found\n");

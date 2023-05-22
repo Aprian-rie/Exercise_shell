@@ -20,18 +20,12 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
         int status;
 	pid_t child1;
 	ssize_t _read;
-	int mode, bufsize;
+	int bufsize;
 	const char *delim = " \n";
 
-	mode = 1;
-
-	while (mode)
+	while (1)
 	{
-		mode = isatty(STDIN_FILENO);
-		if (mode == 1)
-		{
-			write(STDOUT_FILENO, "$: ", 4);
-		}
+		write(STDOUT_FILENO, "$: ", 4);
 		/* Reads the user input*/
 		_read = getline(&line, &len, stdin);
 		if (_read == -1)
@@ -39,6 +33,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			perror("Error reading input");
 			exit(1);
 		}
+		(line)[_read - 1] = '\0';
 		/* tokenizes the input */
 		count = 0;
 		bufsize = 64;
@@ -51,23 +46,24 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			tokens = strtok(NULL, delim);
 		}
 		toks[count] = NULL;
+		/**Executing commands in the child process */
 		child1 = fork();
 		if (child1 == -1)
 		{
 			perror("Failed to fork");
 			exit(1);
 		}
-		if (child1 == 0)
+		else if (child1 == 0)
 		{
 			if (my_execvp(toks[0], toks) == -1)
 			{
 				perror("Failed to execute execve");
 				exit(1);
 			}
-			else
-			{
-				wait(&status);
-			}
+		}
+		else
+		{
+			wait(&status);
 		}
 		free(toks);
 	}
