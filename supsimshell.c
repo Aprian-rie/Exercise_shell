@@ -21,6 +21,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 	pid_t child1;
 	ssize_t _read;
 	int bufsize;
+	int i;
 	const char *delim = " \n";
 
 	while (1)
@@ -38,15 +39,26 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		count = 0;
 		bufsize = 64;
 		toks = malloc(bufsize * sizeof(char *));
-		tokens = strtok(line, delim);
+		tokens = _strtok(line, delim);
 		while (tokens != NULL)
 		{
 			toks[count] = tokens;
 			count++;
-			tokens = strtok(NULL, delim);
+			tokens = _strtok(NULL, delim);
 		}
 		toks[count] = NULL;
-		/**Executing commands in the child process */
+		/*Executing commands in the child process */
+		if (toks[0] == NULL)
+		{
+			return (1);
+		}
+		for (i = 0; i < num_builtins(); i++)
+		{
+			if (_strcmp(toks[0], builtin_str[i]) == 0)
+			{
+				return (*builtin_func[i])(toks);
+			}
+		}
 		child1 = fork();
 		if (child1 == -1)
 		{

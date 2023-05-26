@@ -22,6 +22,6 @@ char *my_getenv(const char *name)
 		{
 			return (current_var + j + 1);
 		}
-	}
+}
 	return (NULL);
 }

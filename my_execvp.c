@@ -17,7 +17,7 @@ int my_execvp(const char *file, char *const argv[]) {
 
     /* Tokenize the PATH variable to get individual directories*/
     delim = ":";
-    dir = strtok(path, delim);
+    dir = _strtok(path, delim);
 
     /* Iterate over each directory in PATH */
     while (dir != NULL) {
@@ -38,7 +38,7 @@ int my_execvp(const char *file, char *const argv[]) {
 
         /* Clean up and move to the next directory */
         free(exec_path);
-        dir = strtok(NULL, delim);
+        dir = _strtok(NULL, delim);
     }
 
     /* If execution reaches here, the command was not found in any directory */
